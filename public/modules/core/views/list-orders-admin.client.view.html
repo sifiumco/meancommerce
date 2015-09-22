@@ -1,0 +1,183 @@
+<style>
+    .tg  {border-collapse:collapse;border-spacing:0;border-color:#aabcfe;margin:0px auto;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#669;background-color:#e8edff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#aabcfe;color:#039;background-color:#b9c9fe;}
+.tg .tg-s6z2{text-align:center}
+.tg .tg-vn4c{background-color:#D2E4FC}
+.tg .tg-0ord{text-align:right}
+.tg .tg-ifyx{background-color:#D2E4FC;text-align:right}
+.color_active {
+  background-color: #f46;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.color_notactive {
+  background-color: #4e4e4e;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+</style>
+<section data-ng-controller="OrdersController" data-ng-init="getAllOrders()">
+    <div class="container">
+        <div class="card" data-ng-repeat="order in orders" style="padding:0px; margin-top:20px;background-color:#ffc;">
+            <div class="row" style=" width:100%;height:51px; padding:0px; margin:0px; margin-top:-10px; padding-top:1%;text-align:center;">
+                <h5><strong>Order Confirmation</strong></h5>
+                <a class='dropdown-button btn right' data-activates='{{order._id}}' style="margin-top:-50px;">Change status</a>
+                <ul id='{{order._id}}' class='dropdown-content'>
+                    <li><a href data-ng-click="changeStatus(order, 'on process')">on process</a></li>
+                    <li><a href data-ng-click="changeStatus(order, 'delivered')">delivered</a></li>
+                    <li><a href data-ng-click="changeStatus(order, 'not delivered')">not delivered</a></li>
+                </ul>
+            </div>
+            <div class="row" style="padding:20px;">
+             <p class="right" style="font-style:Italic; line-height:1rem;">{{order.created.substring(0,10)}}<strong> ({{order.created.substring(11, 16)}})</strong></p>
+            <div class="col l3 s6">
+                <p>
+                    Order Id: {{order._id}}
+                    <br> Status: <strong>{{order.status}}</strong></p>
+            </div>
+            <div class="col l9 s6">
+                 <div class="row">
+                    <div class="col l3 s4">
+                    <div class="col l1 s4" style="padding-top:10px;">
+                         <div ng-class="{'color_active': order.status=='on process', 'color_notactive': order.status!='on process'}">
+                        </div>
+                    </div>
+                    <div class="col l11 s4" style="margin-top: -20px;">
+                         <h6 style="margin-left:20px;">on Process</h6>
+                    </div>
+
+
+                    </div>
+                      <div class="col l3 s4">
+                    <div class="col l1 s4" style="padding-top:10px;">
+                         <div ng-class="{'color_active': order.status=='delivered', 'color_notactive': order.status!='delivered'}">
+                        </div>
+                    </div>
+                    <div class="col l11 s4" style="margin-top: -20px;">
+                         <h6 style="margin-left:20px;">Dilevered</h6>
+                    </div>
+
+
+                    </div>
+                    <div class="col l3 s4">
+                    <div class="col l1 s4" style="padding-top:10px;">
+                         <div ng-class="{'color_active': order.status=='not delivered', 'color_notactive': order.status!='not delivered'}">
+                        </div>
+                    </div>
+                    <div class="col l11 s4" style="margin-top: -20px;">
+                         <h6 style="margin-left:20px;">Not Dilevered</h6>
+                    </div>
+
+
+                    </div>
+                   <div class="col l3 s4">
+                    <div class="col l1 s4" style="padding-top:10px;">
+                         <div  ng-class="{'color_active': order.status=='cancelled', 'color_notactive': order.status!='cancelled'}">
+                        </div>
+                    </div>
+                    <div class="col l11 s4" style="margin-top: -20px;">
+                         <h6 style="margin-left:20px;">Cancelled</h6>
+                    </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+                <div class="row">
+                    <div class="col l12  s12">
+                        <p style="line-height:1.3rem"><strong>Shipping Address</strong>
+                            <ul style="padding-left:10px; list-style-type: none; text-align: center;">
+                                <li style="display: inline;">
+                                    <strong>Name:</strong> {{order.user.firstName}} {{order.user.lastName}},</li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li style="display: inline;"><strong>Email:</strong> {{order.user.email}},</li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li style="display: inline;"><strong>Mobile Number:</strong> {{order.user.phone}},</li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li style="display: inline;"><strong>Address:</strong> {{order.address.addressLine_1}} {{order.address.addressLine_2}},</li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li style="display: inline;"><strong>State:</strong> {{order.address.state}},</li>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li style="display: inline;"><strong>Zip Code:</strong> {{order.address.zip}}
+                                </li>
+                            </ul>
+                        </p>
+                    </div>
+                    <div class="col l6 s12">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row" >
+                <div class="col l8 s12 offset-l2">
+                    <table class="tg">
+  <tr>
+    <th class="tg-s6z2" colspan="6">Order Details</th>
+  </tr>
+  <tr>
+    <td class="tg-vn4c">Product Name</td>
+    <td class="tg-vn4c">Quantity</td>
+    <td class="tg-vn4c">Price</td>
+  </tr>
+  <tr data-ng-repeat="cartItem in order.cart">
+    <td class="tg-031e">{{cartItem.product.name}}</td>
+    <td class="tg-031e">{{cartItem.items}}{{cartItem.product.unit}}</td>
+    <td class="tg-0ord">&#8377; {{cartItem.product.price}}</td>
+  </tr>
+</table>
+</div>
+                </div>
+                <div class="row" style="margin:0px;">
+                    <h5><strong>Order Total:-</strong><span class="right">&#8377; {{order.totalAmount}}</span></h5></div>
+            </div>
+        </div>
+    </div>
+    <!-- <ul>
+        <li data-ng-repeat="order in orders">
+            {{order.status}} -->
+            <!-- <button class='dropdown-button btn' data-activates='{{order._id}}'>Change status</a>
+                <ul id='{{order._id}}' class='dropdown-content'>
+                    <li><a href data-ng-click="changeStatus(order, 'on process')">on process</a></li>
+                    <li><a href data-ng-click="changeStatus(order, 'delivered')">delivered</a></li>
+                    <li><a href data-ng-click="changeStatus(order, 'not delivered')">not delivered</a></li>
+                </ul> -->
+                <!--
+        order
+          ._id
+          .status
+          .user
+            .firstName
+            .lastName
+            .email
+            .phone
+            .username
+          .address
+            .addressLine_1
+            .addressLine_2
+            .city
+            .state
+            .zip
+       -->
+                <!-- For cart, as follows -->
+                <!-- CART STARTS -->
+                <!-- <ul>
+                    <li data-ng-repeat="cartItem in order.cart"> -->
+                        <!--
+            cartItem
+              .items
+              .product
+                .name
+                .price
+                .category
+                  .category
+                .subCategory
+                  .subCategory
+                .unit
+            -->
+               <!--      </li>
+                </ul> -->
+                <!-- CART ENDS -->
+      <!--   </li>
+    </ul> -->
+</section>

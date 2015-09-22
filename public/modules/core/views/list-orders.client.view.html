@@ -1,0 +1,125 @@
+<style>
+strong {
+  font-weight: 600;
+}
+
+.color_active {
+  background-color: #f46;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+.color_notactive {
+  background-color: #4e4e4e;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+</style>
+<section data-ng-controller="OrdersController" data-ng-init="getUserOrders()">
+  <div class="container">
+    <div class="card" data-ng-repeat="order in orders" style="padding:0px; margin-top:20px;background-color:#ffc;">
+      <div class="row" style=" width:100%;height:51px; padding:0px; margin:0px; margin-top:-10px; padding-top:1%;text-align:center;">
+        <h5><strong>Order Confirmation</strong></h5>
+        <a data-ng-show="authentication.user && order.status=='on process'" class="btn right" style="margin-top:-50px;" data-ng-click="changeStatus(order, 'cancelled')">Cancel Order</a>
+      </div>
+      <div class="row" style="padding:20px;">
+        <p class="right" style="font-style:Italic; line-height:1rem;">{{order.created.substring(0,10)}}<strong> ({{order.created.substring(11, 16)}})</strong></p>
+        <p>Congratulations on your Preeti Store order from <span style="color:blue">
+            <span ng-repeat="cartItem in order.cart">{{cartItem.product.name}} | </span>
+        </span>.
+          <br>Your order id is: {{order._id}}
+          <br> Your Order's status is <strong>{{order.status}}</strong></p>
+        <div class="row">
+          <div class="col l3 s3">
+            <div ng-class="{'color_active': order.status=='on process', 'color_notactive': order.status!='on process'}">
+            </div>
+            <h6 style="margin-left:20px;">on Process</h6>
+          </div>
+          <div class="col l3 s3">
+            <div ng-class="{'color_active': order.status=='delivered', 'color_notactive': order.status!='delivered'}">
+            </div>
+            <h6 style="margin-left:20px;"> Delivered</h6>
+          </div>
+          <div class="col l3 s3">
+            <div ng-class="{'color_active': order.status=='not delivered', 'color_notactive': order.status!='not delivered'}">
+            </div>
+            <h6 style="margin-left:20px;">Not Delivered</h6>
+          </div>
+          <div class="col l3 s3">
+            <div ng-class="{'color_active': order.status=='cancelled', 'color_notactive': order.status!='cancelled'}">
+            </div>
+            <h6 style="margin-left:20px;">Cancelled</h6>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <h4 style="padding:10px;">Order details</h4>
+        <div class="divider"></div>
+        <div class="row">
+          <div class="col l6 s12">
+            <p style="line-height:1.3rem"><strong>Shipping Address</strong>
+              <ul style="padding-left:10px;">
+                <li>
+                  <strong>Name:</strong> {{order.user.firstName}} {{order.user.lastName}}
+                </li>
+                <li>
+                  <strong>Email:</strong> {{order.user.email}}
+                </li>
+                <li>
+                  <strong>Mobile Number:</strong> {{order.user.phone}}
+                </li>
+                <li>
+                  <strong>Address:</strong> {{order.address.addressLine_1}} {{order.address.addressLine_2}}
+                </li>
+                <li>
+                  <strong>State:</strong> {{order.address.state}}
+                </li>
+                <li>
+                  <strong>Zip Code:</strong> {{order.address.zip}}
+                </li>
+              </ul>
+            </p>
+          </div>
+          <div class="col l6 s12">
+            &nbsp;
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" data-ng-repeat="cartItem in order.cart">
+          <div class="col l4 s12">
+            <img ng-src="/static/images/products/{{cartItem.product._id}}/image" class="imagehover image-center" fallback-src="{{Constants.noImage}}" alt="Product images">
+          </div>
+          <div class="col l8 s12">
+            <p>{{cartItem.product.name}}
+              <br><strong>Quantity:</strong> {{cartItem.items}}{{cartItem.product.unit}}
+              <br><strong>Price:</strong> &#8377; {{cartItem.product.price}}
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div class="row" style="margin:0px;">
+          <h5><strong>Order Total:-</strong><span class="right">&#8377; {{order.totalAmount}}</span></h5></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <ul>
+    <li data-ng-repeat="order in orders">
+      {{order._id}} {{order.status}} -->
+<!--
+        order
+          ._id
+          .status
+          .user
+            .firstName
+            .lastName
+            .email
+            .phone
+            .username
+          .address
+            .addressLine_1
+            .addressLine_2
+            .city
+            .state
+            .zip
+       -->

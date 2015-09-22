@@ -1,0 +1,32 @@
+<section data-ng-controller="AuthenticationController">
+  <div class="row" style="margin-top: 10px;">
+    <div class="col l6 m6 s12">
+      <form name="userForm" data-ng-submit="signup()" novalidate autocomplete="off">
+        <fieldset>
+          <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+          <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+          <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+          <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+          <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+          <input type="hidden" data-ng-model="credentials.roles" data-ng-init="credentials.roles='admin'">
+          <input type="submit" value="Register" class="waves-effect waves-light btn">
+        </fieldset>
+      </form>
+      <div data-ng-show="error" class="row text-center">
+        <strong data-ng-bind="error" style="color:#ee6e73;"></strong>
+      </div>
+    </div>
+    <div class="col l6 m6 s12">
+      <form data-ng-submit="signin()" autocomplete="off">
+        <fieldset>
+          <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+          <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+          <input type="submit" value="Login" class="waves-effect waves-light btn">
+        </fieldset>
+      </form>
+      <div data-ng-show="error" class="row text-center">
+        <strong data-ng-bind="error" style="color:#ee6e73;"></strong>
+      </div>
+    </div>
+  </div>
+</section>

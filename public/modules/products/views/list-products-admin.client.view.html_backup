@@ -1,0 +1,126 @@
+<style type="text/css">
+@media screen and (max-width: 1920px) {
+  .collapsible-header {
+    font-size: 1rem;
+  }
+  .produktliste .card-image1 {
+    height: 250px;
+    max-height: 250px;
+}
+}
+
+@media screen and (max-width: 1600px) {
+  .collapsible-header {
+    font-size: 0.9rem;
+    padding-left: 5px;
+  }
+  .produktliste .card-image1 {
+    /*height: 250px;*/
+    max-height: 250px;
+}
+}
+
+@media screen and (max-width: 1366px) {
+  .collapsible-header {
+    font-size: 0.8rem;
+    padding-left: 5px;
+    line-height: 1.7;
+    padding-bottom: 5px;
+    padding-top:5px;
+  }
+  .produktliste .card-image1 {
+    /*height: 250px;*/
+    max-height: 150px;
+}
+.card .card-content {
+    padding: 20px;
+    border-radius: 0px 0px 2px 2px;
+    height: 120px;
+}
+}
+
+@media screen and (max-width: 1200px) {
+  .collapsible-header {
+    font-size: 0.8rem;
+  }
+}
+.row .col {
+    transition: all 0.3s ease 0s;
+    float: left;
+    box-sizing: border-box;
+    padding: 0px 0.75rem;
+}
+
+.input-field label.active {
+    font-size: 0.8rem;
+    transform: translateY(-60%);
+}
+
+.edit-btn {
+    padding-top: 10px;
+}
+
+.icon-color {
+    color: orange;
+}
+</style>
+<section data-ng-controller="ProductsAdminController" data-ng-init="find(); findCategories();">
+    <div class="container">
+        <div class="row header-produktliste">
+            <div class="col m5 s12 offset-m7 modelsearch">&nbsp;
+                <!-- <form class="row" method="get" role="search">
+                    <div class="input-field col s12">
+                        <label for="search"><i class="material-icons right">search</i></label>
+                        <input type="text" name="term" id="robot" placeholder="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Search your items" value="">
+                        <!--<input type="submit" class="col s3 btn" name="submitautocomplete" value="Suchen" type="button" >-->
+                    <!-- </div>
+                </form> -->
+            </div>
+        </div>
+        <ul class="row produktliste">
+            <li class="col l4 m6 s12 " ng-repeat="product in products">
+                <div class="card">
+                    <div class="card-image1" style="padding-top:20px; padding-bottom:0px;">
+                        <img ng-src="/static/images/products/{{product._id}}/image" class="imagehover image-center" style="width:auto; height:100%; overflow:hidden;" fallback-src="{{Constants.noImage}}" alt="Product images">
+                    </div>
+                    <div class="divider"></div>
+                    <div class="card-content">
+                        <h3><strong>{{product.name}}</strong></h3>
+                        <p style="font-size:0.7rem; line-height:1.3rem;">{{product.category.category}} / {{product.subCategory.subCategory}}
+                            <br>
+                            <span class="price-used">{{product.description}}</span>
+                            <br>
+                        </p>
+                        <!--  <p ng-hide="product.stock > 0">
+                                Out of Stock
+                            </p> -->
+                        <!-- <br> -->
+                        <!-- <a href data-ng-click="addToCart(product)" class="btn" data-ng-show="authentication.user">Add to cart</a></span> -->
+                    </div>
+                    <div class="card-title" style="padding-top:0px;">
+                        <span style="font-size:1.3rem; color:#ee6e73; padding:10px;" class="price">&#8377;{{product.price}}</span>
+                        <span>
+<a class="right" href data-ng-click="remove(product)">
+                            <i class="material-icons icon-color">delete</i>
+                        </a>&nbsp;&nbsp;&nbsp;
+                       <a class="right" data-ng-href="#!/products/admin/{{product._id}}/edit">
+                            <i class="material-icons icon-color">mode_edit</i>
+                        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                    </div>
+                </div>
+                <div class="card"> </div>
+            </li>
+        </ul>
+        <div class="alert alert-warning text-center" data-ng-hide="!products.$resolved || products.length">
+            No Products yet, why don't you <a href="/#!/products/create">create one</a>?
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.tooltipped').tooltip({
+        delay: 50
+    });
+});
+</script>

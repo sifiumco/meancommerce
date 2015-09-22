@@ -1,0 +1,282 @@
+'use strict';
+
+angular.module('products').controller('ProductsAdminController', ['$scope', '$stateParams', '$http', '$location', 'Upload', 'Authentication', 'Products', 'Categories', 'Constants',
+  function($scope, $stateParams, $http, $location, Upload, Authentication, Products, Categories, Constants) {
+    $scope.authentication = Authentication;
+
+    $scope.Constants = Constants;
+
+    $scope.productId = $stateParams.productId ? $stateParams.productId : null;
+
+    $scope.$watch(function(scope) {
+      return scope.selectedCategory;
+    }, function() {
+      filterProducts('category');
+    });
+
+    $scope.$watch(function(scope) {
+      return scope.selectedSubCategory;
+    }, function() {
+      filterProducts('subCategory');
+    });
+
+    // Variable to store inital products before filtering
+    var products = [];
+
+    // Create new Product
+    $scope.create = function() {
+      if ($scope.selectedCategory && $scope.selectedCategory) {
+        // Create new Product object
+        var product = new Products.main({
+          name: $scope.product.name,
+          description: $scope.product.description,
+          price: $scope.product.price,
+          stock: $scope.product.stock,
+          unit: $scope.product.unit,
+          category: $scope.selectedCategory._id,
+          subCategory: $scope.selectedSubCategory._id
+        });
+
+        product.$save(function(response) {
+          $scope.productId = response._id;
+          if ($scope.file) {
+            imageUploader('products', function(err) {
+              if (!err) {
+                $scope.name = '';
+                alert('Product added. Redirecting you to admin panel');
+                $location.path('products/admin');
+              } else {
+                alert('Unable to upload image right now');
+              }
+            });
+          } else {
+            $scope.name = '';
+            alert('Product added. Redirecting you to admin panel');
+            $location.path('products/admin');
+          }
+        }, function(errorResponse) {
+          $scope.error = errorResponse.data.message;
+        });
+      } else {
+        $scope.error = 'Please select a category and sub-category';
+      }
+    };
+
+    // Remove existing Product
+    $scope.remove = function(product) {
+      if (product) {
+        new Products.main(product).$remove(function() {
+          for (var i in $scope.products) {
+            if ($scope.products[i] === product) {
+              $scope.products.splice(i, 1);
+            }
+          }
+        });
+      } else {
+        new Products.main($scope.product).$remove(function() {
+          $location.path('products/admin');
+        });
+      }
+    };
+
+    // Update existing Product
+    $scope.update = function() {
+      var product = new Products.main($scope.product);
+
+      product.category = $scope.selectedCategory._id ? $scope.selectedCategory._id : $scope.product.category._id;
+      product.subCategory = $scope.selectedSubCategory._id ? $scope.selectedSubCategory._id : $scope.product.subCategory._id;
+
+      product.$update(function() {
+        alert('Product updated. Redirecting you to admin panel.');
+        $location.path('products/admin');
+      }, function(errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+    };
+
+    // Find a list of Products
+    $scope.find = function() {
+      $scope.products = Products.user.query();
+      products = $scope.products;
+    };
+
+    // Find existing Product
+    $scope.findOne = function() {
+      $scope.product = Products.main.get({
+        productId: $stateParams.productId
+      });
+      $scope.product.$promise.then(function() {
+        $scope.findCategoriesForEdit();
+      });
+    };
+
+    // Find categories for edit page
+    $scope.findCategoriesForEdit = function() {
+      $scope.category = $scope.product.category;
+      $scope.subCategory = $scope.product.subCategory;
+      $scope.categories = Categories.query();
+      $scope.categories.$promise.then(function() {
+        for (var i = $scope.categories.length - 1; i >= 0; --i) {
+          if ($scope.categories[i]._id === $scope.category._id) {
+            $scope.subCategories = $scope.categories[i].subCategory;
+          }
+        }
+      });
+    };
+
+    // Find all categories
+    $scope.findCategories = function() {
+      $scope.categories = Categories.query();
+    };
+
+    // Select the category and get sub categories for a category
+    $scope.selectCategory = function(category) {
+      $scope.selectedCategory = category;
+      $scope.subCategories = $scope.selectedCategory.subCategory;
+    };
+
+    // Select the sub-category
+    $scope.selectSubCategory = function(subCategory) {
+      $scope.selectedSubCategory = subCategory;
+    };
+
+    // Add a new category
+    $scope.addCategory = function(cat) {
+      var category = new Categories({
+        category: cat.toUpperCase()
+      });
+      category.$save(function(response) {
+        $scope.categories.push(response);
+        $scope.selectedCategory = category;
+        $scope.subCategories = $scope.selectedCategory.subCategory;
+        $scope.cat = '';
+        if ($scope.file) {
+          imageUploader('categories', function(err) {
+            if (err) {
+              alert('Unable to upload image right now');
+            }
+          });
+        }
+      });
+    };
+
+    // Add a new sub-category
+    $scope.addSubCategory = function(subCategory) {
+      if (!$scope.selectedCategory) {
+        $scope.error = 'Please select a category first';
+        return;
+      }
+      var category = $scope.selectedCategory;
+      category.subCategory = subCategory;
+      category.$update(function(response) {
+        $scope.subCategories = response.subCategory;
+        $scope.selectedSubCategory = $scope.subCategories.filter(function(subCat) {
+          return subCat.subCategory === subCategory;
+        })[0];
+        $scope.subCat = '';
+      }, function(errorResponse) {
+        $scope.error = errorResponse.data.message;
+      });
+    };
+
+    $scope.uploadImage = function(file) {
+      if (file && file.length) {
+        if ((/image/i).test(file[0].type) && file[0].size < 1000000) {
+          $scope.file = file[0];
+          if ($scope.productId) {
+            $('#productImage').attr('src', $scope.Constants.preloader);
+            imageUploader('products', function(err) {
+              if (err) {
+                alert('Unable to upload image right now');
+              }
+              $('#productImage').attr('src', '/static/images/products/' + $scope.productId + '/image');
+            });
+          }
+        } else {
+          alert('Image should be less than 1 Mb');
+        }
+      }
+    };
+
+    $scope.deleteCategory = function(category) {
+      $http
+        .delete('/categories/' + category._id)
+        .then(function(data) {
+          var pos = $scope.categories.indexOfCategory(category._id);
+          if (pos !== -1) {
+            $scope.categories.splice(pos, 1);
+            $scope.selectedCategory = null;
+            $scope.subCategories = [];
+          }
+        })
+        .catch(function(err) {
+          console.log('err', err);
+          alert(err);
+        });
+    };
+
+    $scope.deleteSubCategory = function(subCategory) {
+      $http
+        .delete('/subCategories/' + subCategory._id)
+        .then(function(data) {
+          var pos = $scope.subCategories.indexOfCategory(subCategory._id);
+          if (pos !== -1) {
+            $scope.subCategories.splice(pos, 1);
+          }
+        })
+        .catch(function(err) {
+          console.log('err', err);
+          alert(err);
+        });
+    };
+
+    Array.prototype.indexOfCategory = function(id) {
+      for (var i=this.length-1; i>=0; --i) {
+        if (this[i]._id === id) break;
+      }
+      return i;
+    };
+
+    var filterProducts = function(by) {
+      $scope.products = products;
+      if ($scope.selectedCategory || $scope.selectedSubCategory) {
+        $scope.products = $scope.products.filter(function(product) {
+          if (by === 'category') {
+            return product.category._id === $scope.selectedCategory._id;
+          } else if (by === 'subCategory') {
+            return product.subCategory._id === $scope.selectedSubCategory._id;
+          }
+        });
+      }
+    };
+
+    var imageUploader = function(what, next) {
+      var fields = {};
+      if (what === 'products') {
+        fields = {
+          productId: $scope.productId
+        };
+      } else if (what === 'categories') {
+        fields = {
+          categoryId: $scope.selectedCategory._id
+        };
+      }
+      Upload
+        .upload({
+          url: '/' + what + '/image/upload',
+          file: $scope.file,
+          fields: fields
+        }).progress(function(e) {
+          // var progressPercentage = parseInt(100.0 * e.loaded / e.total);
+          // console.log('progress: ' + progressPercentage + '% of ' + e.config.file.name);
+        }).success(function(data, status, headers, config) {
+          // Clear form fields
+          $scope.file = null;
+          return next(null);
+        }).error(function(err) {
+          return next(err);
+        });
+    };
+    $('select').material_select();
+  }
+]);

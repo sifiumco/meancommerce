@@ -1,0 +1,126 @@
+<style type="text/css">
+::-webkit-input-placeholder {
+  color: #4e4e4e;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #4e4e4e;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #4e4e4e;
+}
+
+:-ms-input-placeholder {
+  color: #4e4e4e;
+}
+</style>
+<section data-ng-controller="CheckoutController" data-ng-init="init()">
+  <div class="container">
+    <div class="row" style="margin-top:10%;">
+      <div class="col m12">
+        <form novalidate autocomplete="off" data-ng-submit="checkout()">
+          <div>
+            <div class="row card  orange lighten-5" style="margin:20px; padding-top:20px; padding-bottom:10px;">
+              <div class="col m4">
+                <img src="/static/images/icons/checkout.png" style="width:150px; margin-left:20px;">
+              </div>
+              <div class="col m4">
+                <h5 class="center" style="padding-top:7%;"><span data-ng-bind="cart.length"></span> Items</h5>
+                <a href data-ng-click="openCart()" id="b1" class="btn red darken-1" style="margin-left:25%;">Check your Items</a>
+              </div>
+              <div class="col m4">
+                <h5 class="right" style="padding-top:7%;">
+                  Total Cost
+                  <br>
+                  <span style="color:#ee6e73;">
+                    <b>&#8377; <span data-ng-bind="cartPrice"></span></b>
+                  </span>
+                </h5>
+              </div>
+              <!-- <h4 class="col l12 m12 s12 " style="text-align:center; color:#4e4e4e;">Check Out</h4> -->
+            </div>
+            <div>
+              <div class="row card  orange lighten-5" style="margin:20px; padding-top:20px; padding-bottom:10px;">
+                <div class="col l6 s6 ">
+                  <input type="text" required id="firstName" ng-model="user.firstName" required placeholder="First Name">
+                </div>
+                <div class="col l6 s6 ">
+                  <input type="text" id="lastName" data-ng-model="user.lastName" placeholder="Last Name">
+                </div>
+                <div class="col s6 ">
+                  <input id="tel" type="tel" class="validate" data-ng-model="user.phone" placeholder="Enter mobile number" pattern="^\d{10}$">
+                  <label for="tel" data-error="Please enter valid number" data-success="right"></label>
+                  <!-- <input type="number" idnumbernumber" name="number" class="validate" placeholder="Phone Number"  type="tel"> -->
+                  <!-- <label for="number" data-error="wrong" data-success="right"></label> -->
+                </div>
+                <div class="col s6 ">
+                  <input type="email" id="email" data-ng-model="user.email" class="validate" placeholder="Email">
+                  <label for="email" data-error="Please enter valid email address" data-success="right"></label>
+                  <br>
+                </div>
+                <div class="row collection  orange lighten-5">
+                  <h5 style="margin-left:50px;" data-ng-if="user.address">Select your address</h5>
+                  <a href class="collection-item" data-ng-class="{active: address._id === selectedAddress._id}" data-ng-repeat="address in user.address" data-ng-click="selectAddress(address)">
+                    <span data-ng-bind="address.addressLine_1"></span>,
+                    <span data-ng-if="address.addressLine_2" data-ng-bind="address.addressLine_2"></span>,
+                    <span data-ng-bind="address.city"></span>,
+                    <span data-ng-bind="address.state"></span> -
+                    <span data-ng-bind="address.zip"></span>
+                  </a>
+                </div>
+                <div class="row" style="margin:20px; ">
+                  <div class="col s12 ">
+                    <div class="col m6 offset-m5">
+                      <button class="waves-effect waves-light btn center" type="submit"><i class="material-icons left"></i>Submit your order</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="row card orange lighten-5" style="margin:20px; padding-top:20px; padding-bottom:10px;">
+          <!-- Modal Trigger -->
+          <a class="waves-effect waves-light btn modal-trigger8 row col m6 s12 offset-m3" href="#modal8">Add New Address</a>
+          <!-- Modal Structure -->
+          <div id="modal8" class="modal">
+            <div class="modal-content">
+              <form data-ng-submit="addAddress()">
+                <div class="col s6 ">
+                  <input id="icon_prefix2" type="text" required placeholder="Address Line-1" data-ng-model="address.addressLine_1">
+                </div>
+                <div class="col s6 ">
+                  <input id="icon_prefix2" type="text" placeholder="Address Line-2" data-ng-model="address.addressLine_2">
+                </div>
+                <div class="row" style="margin-top:5px;">
+                       <div class="col s4 ">
+                  <input type="tel" class="validate" id="tel" placeholder="Pincode" pattern="^\d{6}$" data-ng-model="address.zip">
+                </div>
+                <div class="col s4 ">
+                  <input type="text" id="text" placeholder="City" data-ng-model="address.city">
+                </div>
+                <div class="col s4 ">
+                  <input type="text" id="text" placeholder="State" data-ng-model="address.state">
+                </div>
+                </div>
+
+                <div class="row" style="margin:20px; ">
+                  <div class="col m12 s12 ">
+                    <div class="col m6 offset-m5" style="margin-top:10px;">
+                      <button class="waves-effect waves-light btn center" type="submit"><i class="material-icons left"></i>Add New Address</button>
+                      <!-- <button class="waves-effect waves-light btn center" type="submit"><i class="material-icons left"></i>Add address</button> -->
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div data-ng-show="error" class="text-center text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </div>
+</section>

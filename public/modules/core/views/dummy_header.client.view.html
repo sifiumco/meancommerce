@@ -1,0 +1,277 @@
+ <header>
+        <nav style="height:51px;">
+            <a href="/" class="brand-logo"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px;"></a>
+            <!--  <a data-ng-show="authentication.user && authentication.user.roles.indexOf('admin') === -1" class="left responsive-img image-center" style="margin:6px; width:auto; height:50px;" href="#!/orders">Orders</a> -->
+            <div class="container-fluid">
+                <ul class="right">
+                    <li data-ng-show="!authentication.user || authentication.user.roles.indexOf('admin') === -1">
+                        <!-- Modal Trigger -->
+                        <a class="modal-trigger6 waves-effect nav-sign-btn activehover1" style="margin-top: 3px;" href="#modal6">Track Order</a>
+                        <!-- Modal Structure -->
+                        <div id="modal6" class="modal">
+                            <div class="modal-content">
+                                <form method="get" action="{{'#!/order/' + orderId}}" style="color:black; height:51px;">
+                                    <input type="text" style="height:3.3rem;" data-ng-model="orderId" placeholder="Track order by order ID">
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-ng-show="authentication.user && authentication.user.roles.indexOf('admin') !== -1">
+                        <a class="waves-effect activehover1" href="#!/orders/admin" style="line-height: 51px; padding-top: 6px;">All Orders</a>
+                    </li>
+                    <li data-ng-show="authentication.user && authentication.user.roles.indexOf('admin') === -1">
+                        <a class="waves-effect activehover1" href="#!/orders" style="line-height: 51px;">Order History</a>
+                    </li>
+                    <li ui-route="/signin" ng-class="{active: $uiRoute}" data-ng-hide="authentication.user">
+                        <!-- Modal Trigger -->
+                        <a class="modal-trigger1 waves-effect nav-signin activehover1" href="#modal2" data-target="#modal2">Signin</a>
+                        <!-- Modal Structure -->
+                        <!--login modal-->
+                        <div id="modal2" class="row modal black-text" style="border-radius: 20px; width:450px; ">
+                            <div data-ng-controller="AuthenticationController">
+                                <h4 class="col l12 m12 s12 card teal lighten-1 white-text create-account-heading text-center" style="padding:5px;">&nbsp;</h4>
+                                <!-- <h4 class="col l12 m12 s12 card grey darken-3 white-text create-account-heading text-center">Login</h4> -->
+                                <form data-ng-submit="signin()" autocomplete="off">
+                                    <div class=" col m12 no-top-bottom">
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <p>
+                                            <button href="#" type="submit" class="waves-effect waves-teal blue btn btn-flat modal-action white-text teal lighten-1">Login</button> &nbsp;
+                                            <br>
+                                            <div data-ng-show="error" class="text-center row" style="color:#ee6e73;">
+                                                <strong data-ng-bind="error"></strong>
+                                            </div>
+                                            <br>
+                                            <!-- <button href="#" class="btn btn-flat white modal-close">Cancel</button> -->
+                                            <a href class="blue-text forgot-password" style="text-align:center" data-ng-click="showForgotPasswordDialog()">Forgot your password?</a>
+                                        </p>
+                                        <!--   <div class="row col l6 s6 offset-s3 text-center form-group">
+                                        <button class="btn waves-effect waves-light" type="submit">Sign in</button></div> -->
+                                        <!-- <button type="submit" class="btn btn-large btn-primary">Sign up</button> -->
+                                        <!-- &nbsp; or&nbsp;
+                          <a href="/#!/signin" class="show-signup">Sign in</a> -->
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row" data-ng-controller="PasswordController" data-ng-show="forgotPassword">
+                                <!-- <h4 class="card teal col l12 m12 s12 white-text text-center create-account-heading" style="padding:10px;">Restore your password</h4> -->
+                                <div class="col l12 m12 s6">
+                                    <form data-ng-submit="askForPasswordReset()" class="signin form-horizontal" autocomplete="off">
+                                        <div class="form-group">
+                                            <!--  <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username"> -->
+                                            <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+                                        </div>
+                                        <div class="text-center form-group">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                        <div data-ng-show="error" class="text-center text-danger">
+                                            <strong>{{error}}</strong>
+                                        </div>
+                                        <div data-ng-show="success" class="text-center text-success">
+                                            <strong>{{success}}</strong>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li ui-route="/signup" ng-class="{active: $uiRoute}" data-ng-hide="authentication.user">
+                        <!-- Modal Trigger -->
+                        <a class="modal-trigger waves-effect nav-sign-btn activehover1" href="#modal1">Register User</a>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal black-text" data-ng-controller="AuthenticationController" style="border-radius: 20px; width:450px;">
+                            <h4 class="col l12 m12 s12 card teal lighten-1 white-text create-account-heading text-center" style="padding:5px;">&nbsp;</h4>
+                            <form name="userForm" data-ng-submit="signup()" novalidate autocomplete="off">
+                                <div>
+                                    <div class="row">
+                                        <div class="col l6 s6">
+                                            <div class="form-group">
+                                                <input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="First Name">
+                                            </div>
+                                        </div>
+                                        <div class="col l6 s6">
+                                            <div class="form-group">
+                                                <input type="text" id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 form-group">
+                                            <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col s12 form-group">
+                                            <input type="tel" id="tel" name="phone" class="form-control" data-ng-model="credentials.phone" placeholder="Mobile number" pattern="^\d{10}$">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l6 s6">
+                                            <div class="form-group">
+                                                <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username">
+                                            </div>
+                                        </div>
+                                        <div class="col l6 s6">
+                                            <div class="form-group">
+                                                <input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h2>Address</h2>
+                                        <div class="col s4 ">
+                                            <input id="icon_prefix2" type="text" required placeholder="Address Line-1" data-ng-model="credentials.address[0].addressLine_1"></input>
+                                        </div>
+                                        <div class="col s4 ">
+                                            <input id="icon_prefix2" type="text" placeholder="Address Line-2" data-ng-model="credentials.address[0].addressLine_2"></input>
+                                        </div>
+                                        <div class="col s6 ">
+                                            <input type="tel" class="validate" id="tel" placeholder="Pincode" pattern="^\d{6}$" data-ng-model="credentials.address[0].zip">
+                                        </div>
+                                        <div class="col s6 ">
+                                            <input type="text" id="text" placeholder="City" data-ng-model="credentials.address[0].city">
+                                        </div>
+                                        <div class="col s6 ">
+                                            <input type="text" id="text" placeholder="State" data-ng-model="credentials.address[0].state">
+                                        </div>
+                                    </div>
+                                    <div class="row text-center form-group">
+                                        <button class="waves-effect waves-teal btn teal lighten-1" type="submit"><i class="material-icons left"></i>Sign up</button>
+                                    </div>
+                                    <div data-ng-show="error" class="row text-center">
+                                        <strong data-ng-bind="error" style="color:#ee6e73;"></strong>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <!-- <a href="/#!/signup">Signup</a></li> -->
+                    <!-- <li ui-route="/signin" ng-class="{active: $uiRoute}"><a href="/#!/signin" data-ng-hide="authentication.user">Sign In</a></li> -->
+                    <li data-ng-show="authentication.user && authentication.user.roles.indexOf('admin') !== -1" style="height:51px;">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button open-dropdown' href data-activates='dropdown2'>Your Products<i class="right material-icons" style="color:white; margin-top:-10px;">keyboard_arrow_down</i></a>
+                        <!-- Dropdown Structure -->
+                        <ul id='dropdown2' class='dropdown-content dropdown-height' style="background: rgba(255, 255, 255, 1); color:#white; top:-10px;">
+                            <li>
+                                <a href="/#!/products/admin">Products</a>
+                            </li>
+                            <li>
+                                <a href="/#!/products/admin/create">New Product</a>
+                            </li>
+                            <li>
+                                <a href="/#!/products/admin/addCategory">Add New Category</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-ng-show="authentication.user" style="height:51px;">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button waves orange lighten-3  open-dropdown' style="color: #4e4e4e;" href data-activates='dropdown1'><i class="right material-icons" style="color:#4e4e4e; margin-top:-10px;">keyboard_arrow_down</i><span data-ng-bind="authentication.user.displayName"></span></a>
+                        <!-- Dropdown Structure -->
+                        <ul id='dropdown1' class='dropdown-content dropdown-height' style="background: rgba(255, 255, 255, 1); color:white; top:-10px;">
+                            <li>
+                                <a href="/#!/settings/profile">Edit Profile</a>
+                            </li>
+                            <!-- <li255
+                <a href="/#!/settings/accounts">Manage Social Accounts</a>
+              </li> -->
+                            <li data-ng-show="authentication.user.provider === 'local'">
+                                <a href="/#!/settings/password">Change Password</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/auth/signout">Signout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li style="height:51px;">
+                        <form data-ng-submit="search(searchTerm)" class="search-wrapper cf">
+                            <input type="text" placeholder="Search here..." data-ng-model="searchTerm" required="">
+                            <button type="submit">Search</button>
+                        </form>
+                    </li>
+                    <li data-ng-show="!authentication.user || authentication.user.roles.indexOf('admin') === -1">
+                        <!-- Modal Trigger -->
+                        <a id="cart-icon" class="waves-effect modal-trigger2 add-cart" data-target="modal3" style="height:51px;">
+                            <div class="row" style="margin-top:10px; margin-right:20px;"><i class="material-icons">add_shopping_cart</i>
+                                <div style="background:#504F4E; border-radius: 50%; padding:10px; text-align:center; position: absolute;z-index:999; top:0; font-size: 0.8rem; margin-left:20px; color:white; margin-top: 5px;"><span data-ng-bind="cartItems"></span></div>&nbsp;&nbsp;</div>
+                        </a>
+                        <!-- Modal Structure -->
+                        <div id="modal3" class="modal black-text">
+                            <div class="modal-content">
+                                <h5 class="modal-title">Your cart items</h5>
+                                <div ng-repeat="cartItem in cart">
+                                    <div class="row">
+                                        <div class="col l3 s3">
+                                            <img class="clip-me responsive-img inside-cart" ng-src="/static/images/products/{{cartItem.product._id}}/image" fallback-src="{{Constants.noImage}}" alt="">
+                                        </div>
+                                        <div class="col l9 s9">
+                                            <div class="col l6 s12">
+                                                <h5 class="status" style="" ng-bind="cartItem.product.name"></h5>
+                                                <strong>Status:</strong>
+                                                <span ng-if="cartItem.product.stock > 0" class="text-success"><strong>In Stock</strong></span>
+                                                <span ng-if="cartItem.product.stock <= 0" class="text-danger"><strong>Out of Stock</strong></span>
+                                                <h5 class="cost">Per item Cost: <strong> &#8377; <span data-ng-bind="cartItem.product.price"></span></strong></h5>
+                                                <h5 class="cost">By: <span ng-bind="cartItem.product.user.displayName"></span> </h5>
+                                            </div>
+                                            <div class="col l3 s6 text-center">
+                                                <div class="row">
+                                                    <a href data-ng-click="items = items <= 1 ? 1 : items - 1; setItemsByNo(cartItem.product, items)" class="col m3">
+                                                        <i class="material-icons">chevron_left</i>
+                                                    </a>
+                                                    <form data-ng-submit="setItemsByNo(cartItem.product, items)" style="color: black;" class="col m6">
+                                                        <input style="text-align:center; height:30px; color:#FFA726; font-size:1.2rem;" type="text" min="1" data-ng-model="items" data-ng-init="items = cartItem.items">
+                                                    </form>
+                                                    <a href data-ng-click="items = items + 1; setItemsByNo(cartItem.product, items)" class="col m3">
+                                                        <i class="material-icons">chevron_right</i>
+                                                    </a>
+                                                </div>
+                                                <div data-ng-bind="cartItem.product.unit" style="margin-top: -48px; margin-left: 120px;"></div>
+                                                <!--  <a href data-ng-click="items = items + 1; setItemsByNo(cartItem.product, items)">
+                          <i class="material-icons">keyboard_arrow_up</i>
+                        </a>
+
+                        <form data-ng-submit="setItemsByNo(cartItem.product, items)" style="color: black;">
+                         <div class="row">
+                            <div class="col m10">
+                                <input type="number" min="1" data-ng-model="items" data-ng-init="items = cartItem.items">
+                            </div>
+                            <div class="col m2" >
+                                <div data-ng-bind="cartItem.product.unit" style="margin-top: -40px; margin-left: 80px;"></div>
+                            </div>
+                        </div>
+ -->
+                                                <!-- <button type="submit" class="right btn-floating waves-effect waves-light orange lighten-1"><i class="material-icons">add</i></button> -->
+                                                <!-- </form> -->
+                                                <!--  <a href data-ng-click="items = items <= 1 ? 1 : items - 1; setItemsByNo(cartItem.product, items)">
+                          <i class="material-icons">keyboard_arrow_down</i>
+                        </a> -->
+                                            </div>
+                                            <div class="col l3 s6 product-price">
+                                                <a class="right btn-floating" style="border-radius:50%; margin-top:-80px;" data-ng-click="removeItem(cartItem.product)">
+                                                    <i class="material-icons">clear</i>
+                                                </a>
+                                                <span class="right" style="margin-top: 20px;"> &#8377; <span data-ng-bind="cartItem.items * cartItem.product.price"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                </div>
+                                <div class="modal-footer" data-ng-hide="!cart || cart.length === 0">
+                                    <a href data-ng-click="checkout();" class="modal-action modal-close waves-effect waves-green btn">Place Order <span data-ng-bind="cartPrice"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>

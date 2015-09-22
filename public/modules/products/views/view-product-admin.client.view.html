@@ -1,0 +1,36 @@
+
+<section data-ng-controller="ProductsAdminController" data-ng-init="findOne()">
+  <div class="container">
+    <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == product.user._id))">
+      <a class="btn btn-primary" href="/#!/products/admin/{{product._id}}/edit">
+        <i class="glyphicon glyphicon-edit"></i>
+      </a>
+      <a class="btn btn-primary" data-ng-click="remove();">
+        <i class="glyphicon glyphicon-trash"></i>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="thumbnail">
+          <img class="img-responsive" ng-src="/static/images/products/{{product._id}}/image" fallback-src="{{Constants.noImage}}" alt="">
+          <div class="caption-full">
+            <h4 class="pull-right">
+              <span ng-bind="product.price"></span>
+            </h4>
+            <h4>
+              <span ng-bind="product.name"></span>
+            </h4>
+            <p>
+              <span ng-bind="product.description"></span>
+            </p>
+          </div>
+          <div class="ratings">
+            <p class="pull-right" ng-hide="product.stock > 0">
+              Out of Stock
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

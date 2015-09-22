@@ -1,0 +1,156 @@
+<style type="text/css">
+.text-center {
+    text-align: center;
+}
+
+.image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#links ul {
+    list-style-type: none;
+}
+
+#links li {
+    border: 0px dotted #999;
+    border-width: 1px 0;
+    margin: 0px 0;
+}
+
+#links li a {
+    color: #4e4e4e;
+    display: block;
+    padding: 5px;
+    text-decoration: none;
+}
+
+* html #links li a {
+    /* make hover effect work in IE */
+    width: 400px;
+}
+
+#links li a:hover {
+    background: #FFA500;
+    color: white;
+}
+
+.addImage-size {
+    width: auto;
+    height: 150px;
+}
+
+.background-heading {
+    background: teal;
+    color: white;
+    padding: 10px;
+}
+
+.category-itemname-show {
+    padding-left: 1em;
+}
+
+.sub-category-noitem {
+    padding: 20px;
+    text-align: center;
+    color: #4e4e4e;
+}
+
+.new-sub-category-add {
+    padding: 20px;
+    color: #4e4e4e;
+    text-align: center;
+}
+
+.activeCategory,
+.activeCategory a div span {
+    color: #fff;
+    background-color: #FFA500;
+}
+</style>
+<section data-ng-controller="ProductsAdminController" data-ng-init="findCategoriesForAdding()">
+    <div class="container" >
+        <div class="card-panel">
+            <div class="card panel teal">
+                <h4 class="white-text text-center"> New Category and Sub Category</h4>
+            </div>
+            <div class="row" data-ng-model="product" style="margin-left:0px; margin-right:0px;"s>
+                <div class="col l12 m12 s12 ">
+                    <div ngf-select type="file" ngf-change="uploadImage($files)" accept="image/*" ngf-max-size='1000000'>
+                        <img src="{{Constants.addImage}}" class="responsive-img image-center addImage-size" ngf-max-size='1000000'>
+                        <a class="btn left waves-effect waves-light orange lighten-2" style="margin-top:2%;" ngf-select type="file" ngf-change="uploadImage($files);" accept="image/*">Upload image</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m6 ">
+                    <h5 class="text-center background-heading">Add New Category or Select</h5>
+                    <div class="col m10 offset-m1 card-panel">
+                        <form data-ng-submit="addCategory(cat)">
+                            <div class="input-field blue-text">
+                                <input id="categoryInput" type="text" data-ng-model="cat" placeholder="Add new category" class="form-control">
+                            </div>
+                        </form>
+                        <div>
+                            <div class="row" id="links">
+                                <ul>
+                                    <li ng-class="{activeCategory: category._id === selectedCategory._id}" ng-repeat="category in categories">
+                                        <div class="row" style="margin-bottom:0px;">
+                                                <a href ng-click="selectCategory(category)">
+                                                    <div class="row category-itemname-show">
+                                                        <span style="padding-left:20px" ng-bind="category.category"></span>
+                                                    </div>
+                                                </a>
+                                          <!--   <div class="col m2">
+                                                <a href data-ng-click="deleteCategory(category)">
+                                                    <h5 style="text-align:right; margin-top: -8%; margin-right: 20px;"><strong>x</strong></h5>
+                                                </a>
+                                            </div> -->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col m6 ">
+                    <h5 class="text-center background-heading">Add New Sub-Category or Select</h5>
+                    <div class="col m10 offset-m1 card-panel">
+                        <form data-ng-submit="addSubCategory(subCat)">
+                            <div class="input-field blue-text">
+                                <input id="subCategoryInput" type="text" data-ng-model="subCat" placeholder="Add new sub-category" class="form-control">
+                            </div>
+                        </form>
+                        <div ng-hide="subCategories" class="sub-category-noitem">
+                            No items here add your sub category
+                        </div>
+                        <div ng-show="subCategories">
+                            <div class="row" id="links">
+                                <ul>
+                                    <li ng-repeat="subCategory in subCategories">
+                                        <div class="row" style="margin-bottom:0px;">
+                                            <div class="col m10">
+                                                <a href ng-click="selectSubCategory(subCategory)">
+                                                    <div class="row category-itemname-show">
+                                                        <span style="padding-left:20px" ng-bind="subCategory.subCategory"></span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col m2">
+                                                <a href data-ng-click="deleteSubCategory(subCategory)">
+                                                    <h5 style="text-align:right; margin-top: -8%; margin-right: 20px;"><strong>x</strong></h5>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <span class="new-sub-category-add"> <div>Add new sub Category</div></span>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

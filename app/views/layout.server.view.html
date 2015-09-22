@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>{{title}}</title>
+    <!-- General META -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- Semantic META -->
+    <meta name="keywords" content="{{keywords}}">
+    <meta name="description" content="{{description}}">
+    <!-- Facebook META -->
+    <meta property="fb:app_id" content="{{facebookAppId}}">
+    <meta property="og:site_name" content="{{title}}">
+    <meta property="og:title" content="{{title}}">
+    <meta property="og:description" content="{{description}}">
+    <meta property="og:url" content="{{url}}">
+    <meta property="og:image" content="/img/brand/logo.png">
+    <meta property="og:type" content="website">
+    <!-- Twitter META -->
+    <meta name="twitter:title" content="{{title}}">
+    <meta name="twitter:description" content="{{description}}">
+    <meta name="twitter:url" content="{{url}}">
+    <meta name="twitter:image" content="/img/brand/logo.png">
+    <!-- Fav Icon -->
+    <link rel="icon" href="/modules/core/img/brand/favicon.ico" type="image/x-icon" />
+    <link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon"> {% if process.env.NODE_ENV === 'development' %}
+    <!--Application CSS Files-->
+    {% for cssFile in cssFiles %}
+    <link rel="stylesheet" href="{{cssFile}}">{% endfor %} {% endif %} {% if process.env.NODE_ENV === 'production' %}
+    <!--Application CSS Files-->
+    <link rel="stylesheet" href="/dist/application.min.css"> {% endif %}
+    <!-- HTML5 Shim -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Custom stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel='stylesheet' type='text/css'> -->
+</head>
+
+<body class="ng-cloak">
+    <style type="text/css">
+    .footer-copyright {
+        margin-bottom: 0px;
+        padding: 5px;
+    }
+
+    #preloader {
+        background-color: #4e4e4e;
+        position: fixed;
+        left: 50;
+        top: 50;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+    }
+
+    .loader1 {
+        background: url(static/images/loader1.gif) no-repeat scroll center center rgba(248, 248, 248, 248);
+        height: 64px;
+        width: 64px;
+        position: absolute;
+        left: calc(50% - 25px);
+        top: calc(50% - 25px);
+    }
+
+    .hover_color li a {
+        color: #696765;
+    }
+
+    .hover_color li a:hover {
+        color: #000;
+    }
+    </style>
+    <div id="preloader">
+        <div class="loader1"></div>
+    </div>
+    <header id="header" style="height:50px;" data-ng-include="'/modules/core/views/header.client.view.html'"></header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <!--Footer starts-->
+    <footer class="orange lighten-3 hide-on-large-only">
+        <ul>
+            <li style="display:inline;"><a class="waves-effect waves-teal btn-flat" href="/#!/about-us">
+                            About us
+                            </a></li>&nbsp;&nbsp;&nbsp;
+            <li style="display:inline;"> <a class="waves-effect waves-teal btn-flat" href="/#!/contact-us">
+                            Contact us
+                            </a></li>&nbsp;&nbsp;&nbsp;
+            <li style="display:inline;"><a class="waves-effect waves-teal btn-flat" href="/#!/policy">Return Policy</a></li>
+            <li style="display:inline;"><a class="waves-effect waves-teal btn-flat" href="/#!">Enquiry</a></li>
+            <div style="text-align:center;">
+                <strong> Customer Care Number:</strong>&nbsp;
+                <br><span style="color:red">(+91)900-900-9009</span>
+            </div>
+        </ul>
+        <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
+            <div class="col l6 offset-l2 s12">
+                <p style="color:#fff; text-align:center;">© Copyright 2015 Preethi Stores. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!--Destop footer-->
+    <footer class="orange lighten-3 hide-on-med-and-down">
+        <div class="container-fluid">
+            <div class="row" style="padding:50px;">
+                <div class="col l2 s12" <a href="/" class="brand-logo"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="margin:6px; margin-top: 25%; width:auto;" /></a>
+                </div>
+                <!--  <div class="col l2 s12" style="padding-top:20px; text-align:center;">
+                    <a href="/"><img src="../static/images/scooter.png" class="responsive-img" />
+                        <br> <span style="font-style:Italic;">Express Delivery</span></a>
+                </div> -->
+                <div class="col l2 s12">
+                    <ul class="hover_color">
+                        <li>
+                            <strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Overview</a></strong>
+                        </li>
+                        <br>
+                        <li>
+                            <a href="/#!/about-us">
+                            About us
+                            </a>
+                        </li>
+                        <li>
+                            Register
+                        </li>
+                        <li>
+                            Latest Products
+                        </li>
+                        <li>
+                            <a href="/#!/contact-us">
+                            Contact us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col l2 s12">
+                    <ul class="hover_color">
+                        <li><strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;"> Policies</a></strong></li>
+                        <br>
+                        <li><a href="/#!/policy">Return Policy</a></li>
+                        <li>Cancellation Policy</li>
+                        <li>Refund Policy</li>
+                        <li>Terms of Use</li>
+                    </ul>
+                </div>
+                <div class="col l2 s12">
+                    <ul class="hover_color">
+                        <li><strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Help</a></strong></li>
+                        <br>
+                        <li>FAQs</li>
+                        <li>How to Buy</li>
+                        <li>Enquiry</li>
+                        <li>Contact Us</li>
+                    </ul>
+                </div>
+                <div class="col l2 s12" style="padding-top:20px; text-align:center;">
+                    <a href="/"><img src="../static/images/scooter.png" class="responsive-img" />
+                        <br> <span style="font-style:Italic;">Express Delivery</span></a>
+                    <br>
+                </div>
+                <div class="col l2 s12">
+                    <ul class="hover_color" style="padding-top:20%;">
+                        <li>
+                            <strong> Customer Care Number:</strong>
+                            <br>
+                            <h5>(+91)900-900-9009</h5>
+                        </li>
+                        <li data-ng-show="!authentication.user || authentication.user.roles.indexOf('admin') === -1">
+                            <!-- Modal Trigger -->
+                            <a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;" class="modal-trigger9 waves-effect activehover1" href="#modal9">Track Order</a>
+                            <!-- Modal Structure -->
+                            <div id="modal9" class="modal">
+                                <div class="modal-content">
+                                    <form style="color:black; height:85px;" onsubmit="trackOrder()">
+                                        <input id="orderId" type="text" style="height:3.3rem;" placeholder="Track order by order ID">
+                                        <button class="btn right" type="submit">Track order</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--  <div class="row">
+                <h5 style="text-align:center;"> Customer Care Number: <strong><span style="color:red;">9009009009</span></strong></h5>
+            </div> -->
+        </div>
+        <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
+            <div class="col l6 offset-l2 s6">
+                <p style="color:#fff; text-align:center;">© Copyright 2015 Preethi Stores. All rights reserved.</p>
+            </div>
+            <div class="col l4 s6">
+                <a href="#" class="footer-socialicon" target="_blank">
+                    <img style="" src="/static/images/icons/fb.png" alt="Preethi Facebook page" class="footer_fbImg"></a>
+                <a class="footer-socialicon" href="#" target="_blank">
+                    <img src="/static/images/icons/twitter.png" alt="Preethi Twitter page"></a>
+            </div>
+        </div>
+        <!--  <div class="container">
+            <div class="row footer-padding">
+                <div class="col l12 s12">
+                    <a href="#">
+                        <img src="/static/images/logo/logo.png" class="imas left responsive-img image-center" style=" margin: 6px; width: auto; height: 50px;">
+                    </a>
+                    <ul class="activehover right">
+                        <li class="footer-inline "><a href="#!">FAQ</a></li>
+                        <li class="footer-inline"><a href="#!">About Us</a></li>
+                        <li class="footer-inline"><a href="#!">Contact Us</a></li>
+                        <li class="footer-inline"><a href="#!">Sell with us</a></li>
+                        <li class="footer-inline"><a href="#!">Terms &amp; Conditions</a></li>
+                        <li class="footer-inline"><a href="#!">Careers</a></li> -->
+        <!-- <li style="display:inline; padding:20px; background-color: #363636; border-radius: 5px; padding: 5px 20px; margin: 2px 15px 2px 0px; cursor: pointer; " class="/"><a href="#!">Blog</a></li> -->
+        <!--  </ul>
+                </div> -->
+        <!--       <div class="col l3 s3 right" >
+                    <h6 class="">Like the experience? Get the app and go mobile!</h6>
+                    <a href="/" target="_blank" data-ng-click="onPlayStoreButtonClick()">
+                        <img alt="peppertap android app" style="width:50px;" src="images/google-play-badge@2x.png">
+                    </a>
+                    <a href="/" target="_blank" data-ng-click="onAppsStoreButtonClick()">
+                        <img src="images/apple-store-badge@2x.png" alt="peppertap iphone ios app" style="width:50px;">
+                    </a>
+                </div> -->
+        <!-- </div>
+            </div>
+            -->
+    </footer>
+</body>
+<!--Embedding The User Object-->
+<script type="text/javascript">
+var user = {{ user | json | safe }};
+</script>
+{% if process.env.NODE_ENV === 'development' %}
+<!--Application JavaScript Files-->
+{% for jsFile in jsFiles %}
+<script type="text/javascript" src="{{jsFile}}"></script>
+{% endfor %}
+<!--Livereload script rendered -->
+<script type="text/javascript" src="http://{{request.hostname}}:35729/livereload.js"></script>
+{% endif %} {% if process.env.NODE_ENV === 'production' %}
+<!--Application JavaScript Files-->
+<script type="text/javascript" src="/dist/application.min.js"></script>
+{% endif %}
+<!-- Custom scripts -->
+<script>
+window.onload = function() {
+    document.getElementById('preloader').style.display = 'none';
+}
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger9').leanModal();
+});
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script>
+function initialize() {
+    var myLatlng = new google.maps.LatLng(30.70877690232847, 76.77361998707056);
+    var mapOptions = {
+        zoom: 15,
+        center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Preethi Stores '
+    });
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<!--Start of Zopim Live Chat Script-->
+<script type="text/javascript">
+window.$zopim || (function(d, s) {
+    var z = $zopim = function(c) {
+            z._.push(c)
+        },
+        $ = z.s =
+        d.createElement(s),
+        e = d.getElementsByTagName(s)[0];
+    z.set = function(o) {
+        z.set.
+        _.push(o)
+    };
+    z._ = [];
+    z.set._ = [];
+    $.async = !0;
+    $.setAttribute("charset", "utf-8");
+    $.src = "//v2.zopim.com/?3DSWtx83xARvkJjIufgMYOoexcJPBquj";
+    z.t = +new Date;
+    $.
+    type = "text/javascript";
+    e.parentNode.insertBefore($, e)
+})(document, "script");
+</script>
+<!--End of Zopim Live Chat Script-->
+<script>
+function trackOrder() {
+    location.href = '#!/order/' + document.getElementById('orderId').value;
+    return false;
+}
+</script>
+<script>
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    document.getElementById('header').setAttribute('data-ng-include', "'/modules/core/views/mob_header.client.view.html'");
+}
+</script>
+
+</html>

@@ -1,0 +1,118 @@
+html {
+    line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: rgba(64, 64, 64, 0.87);
+}
+nav .brand-logo {
+    margin-left: 20px;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+body {
+    background-color: #F4F4F4;
+    /*background-image: url("../static/images/mainbg/backpattern2.png"), none, none;*/
+    background-repeat: repeat, no-repeat, repeat;
+    background-attachment: scroll, scroll, scroll;
+    background-position: 0% 0%, 0% 0%, center center;
+     line-height: 1.5;
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+    color: rgba(64, 64, 64, 0.87);
+    /*background-size: cover;*/
+    /*background-size: contain;*/
+}
+
+.mainbg {
+    background-color: transparent;
+    background-image: url("../static/images/mainbg/backpattern4.jpg"), none, none;
+    background-repeat: repeat, no-repeat, repeat;
+    background-attachment: scroll, scroll, scroll;
+    background-position: 0% 0%, 0% 0%, center center;
+    background-size: cover;
+    /*background-size: contain;*/
+}
+
+
+/*Layout.html*/
+
+.activehover li a {
+    color: #4e4e4e;
+}
+
+.activehover li a:hover {
+    color: #000000 !important;
+}
+  a .activehover1 {
+    color: #cccccc;
+}
+
+  a .activehover1:hover {
+    color: #fcac36 !important;
+}
+footer {
+    margin-bottom: 0px;
+    height: 100%;
+}
+
+.footer-padding {
+    padding: 20px;
+}
+
+.footer-inline {
+    display: inline;
+    padding: 20px;
+    border-radius: 5px;
+    padding: 5px 20px;
+    margin: 2px 15px 2px 0px;
+    cursor: pointer;
+}
+
+.footer-socialicon img {
+    margin-top: 5px;
+    width: 40px;
+}
+
+
+/**/
+
+.text-center {
+    text-align: center;
+}
+
+.image-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+
+
+.font13 {
+    font-size: 1.5rem;
+    line-height: 1.64rem;
+    font-weight: 200;
+    margin: 10px 0px 35px;
+    padding: 5px;
+}
+
+.font12 {
+    font-size: 1rem;
+    line-height: 1.64rem;
+    font-weight: 500;
+    margin: 10px 0px 35px;
+    padding: 5px;
+}
+
+.produktliste {
+    margin: 0;
+    padding: 0
+}

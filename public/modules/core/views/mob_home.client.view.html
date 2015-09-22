@@ -1,0 +1,59 @@
+<style type="text/css">
+@media screen and (max-width: 1920px) {
+    .textsize {
+        top: 50px;
+        color: #FFF;
+        font-family: Ubuntu;
+        font-weight: 700;
+        padding-bottom: 0.5em;
+        /*padding-left: 1em;*/
+        letter-spacing: -0.3px;
+        /*margin:5px;*/
+        line-height: 1.2;
+        font-size: 25px;
+        text-shadow: 1px 1px #000000;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    .textsize {
+        color: #FFF;
+        font-weight: 700;
+        padding-bottom: 0.5em;
+        /*padding-left: 1em;*/
+        letter-spacing: -0.3px;
+        /*margin:5px;*/
+        line-height: 1.2;
+        font-size: 15px;
+    }
+}
+
+.produktliste li {
+    line-height: 1.8;
+    color: #FFF;
+    font-size: 16px;
+}
+</style>
+<section data-ng-controller="HomeController" data-ng-init="findCategories()">
+    <div class="container">
+        <div class="row">
+            <p style="text-align:center; color:#4e4e4e;">SHOP FOR &#8377; 500 AND <span style="color:#F00; font-weight:600;">GET FREE DELIVERY</span> </p>
+            <div class="divider"></div>
+        </div>
+        <div class="row">
+            <ul class="row produktliste">
+                <li class="col l3 m4 s6 " data-ng-repeat="category in categories" data-ng-hide="!category.subCategory || category.subCategory.length === 0">
+                <a ng-href="#!/products/{{category.category}}">
+                    <div class="card" ng-style="{'background-image':'url(/static/images/category/{{category._id}})'}" style="height:70px;  background-size: cover;">
+                        <div class="image2" style="text-align:center; margin:10px; color:white; padding-bottom:15%;">
+                                    <span class="textsize" data-ng-bind="category.category"></span>
+
+                        </div>
+                    </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,31 @@
+<section class="row" data-ng-controller="SettingsController">
+    <div class="container">
+        <h4 class="col m12 text-center" data-ng-show="hasConnectedAdditionalSocialAccounts()">Connected social accounts:</h4>
+        <div class="col m12 text-center">
+            <div data-ng-repeat="(providerName, providerData) in user.additionalProvidersData" class="remove-account-container">
+                <img ng-src="/modules/users/img/buttons/{{providerName}}.png">
+                <a class="btn btn-danger btn-remove-account" data-ng-click="removeUserSocialAccount(providerName)">
+                    <i class="material-icons">delete</i>
+                </a>
+            </div>
+        </div>
+        <div class="col col l8 m8 s12 offset-l2 offset-m2 card-panel text-center">
+        <h3 class="col m12 text-center">Connect other social accounts:</h3>
+            <a href="/auth/facebook" data-ng-hide="isConnectedSocialAccount('facebook')" class="undecorated-link">
+                <img src="/modules/users/img/buttons/facebook.png" style="width:100px;" class="responsive-img image">
+            </a>
+            <a href="/auth/twitter" data-ng-hide="isConnectedSocialAccount('twitter')" class="undecorated-link">
+                <img src="/modules/users/img/buttons/twitter.png" style="width:100px;" class="responsive-img image">
+            </a>
+            <a href="/auth/google" data-ng-hide="isConnectedSocialAccount('google')" class="undecorated-link">
+                <img src="/modules/users/img/buttons/google.png" style="width:100px;" class="responsive-img image">
+            </a>
+            <a href="/auth/linkedin" data-ng-hide="isConnectedSocialAccount('linkedin')" class="undecorated-link">
+                <img src="/modules/users/img/buttons/linkedin.png" style="width:100px;" class="responsive-img image">
+            </a>
+            <a href="/auth/github" data-ng-hide="isConnectedSocialAccount('github')" class="undecorated-link">
+                <img src="/modules/users/img/buttons/github.png" style="width:100px;" class="responsive-img image">
+            </a>
+        </div>
+    </div>
+</section>

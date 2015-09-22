@@ -1,0 +1,70 @@
+<section data-ng-controller="ProductsAdminController" data-ng-init="findOne()">
+    <div class="container">
+        <div class="card-panel">
+            <div class="card panel teal">
+                <h4 class="white-text text-center"> Edit Product details</h4>
+            </div>
+            <div class="row" data-ng-model="product">
+                <div class="col l12 m12 s12 ">
+                    <div ngf-select type="file" ngf-change="uploadImage($files);" accept="image/*">
+                        <div class="col l6 s6 offset-l1">
+                            <img id="productImage" ng-src="/static/images/products/{{productId}}/image" fallback-src="{{Constants.addImage}}" class="responsive-img image-center" style="width: auto; height:150px;" ngf-max-size='1000000'>
+                        </div>
+                        <div class="row">
+                            <a class="btn left waves-effect waves-light orange lighten-2"  style="margin-top:2%;" ngf-select type="file" ngf-change="uploadImage($files);" accept="image/*">Edit image</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <form class="col s12">
+                <div class="row center-align">
+                    <div class="input-field col m6 blue-text">
+                        <input type="text" data-ng-model="product.name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+                    <div class="input-field col m6 blue-text ">
+                        <textarea data-ng-model="product.description" id="textarea1" class="materialize-textarea"></textarea>
+                    </div>
+                    <div class="input-field col m6 blue-text">
+                        <input type="number" data-ng-model="product.price" id="price" class="form-control" aria-label="Price">
+                        <label for="icon_prefix">&#8377;</label>
+                    </div>
+                    <div class="input-field col m6 blue-text">
+                        <input type="number" placeholder="Stock available" data-ng-model="product.stock" id="stock" class="form-control" required>
+                    </div>
+                    <div class="input-field col m2 blue-text">
+                        <select class="browser-default" data-ng-model="product.unit">
+                            <option value="" disabled selected>Stock units</option>
+                            <option value="units">units</option>
+                            <option value="kg">kg</option>
+                        </select>
+                    </div>
+                    <div class="input-field col m4 blue-text">
+                        <select class="browser-default" ng-model="category" ng-options="category.category for category in categories track by category._id" ng-click="selectCategory(category)">
+                            <option value="" selected>Select Category</option>
+                        </select>
+                    </div>
+                    <!-- ng-show="subCategories" -->
+                    <div class="input-field col m4 blue-text" >
+                        <select  class="browser-default" ng-click="selectSubCategory(subCategory)" ng-model="subCategory" ng-options="subCategory.subCategory for subCategory in subCategories track by subCategory._id">
+                         <option value="" selected>Select Sub-category</option>
+                        </select>
+                    </div>
+                   <!--  <div class="input-field col m4 blue-text">
+                        <input id="categoryInput" type="text" data-ng-model="cat" placeholder="Add new category" class="form-control" ng-keypress="addCategory(cat, $event)">
+                        <label class="sr-only" for="categoryInput">Add new category</label>
+                    </div>
+                    <div class="input-field col m4 blue-text">
+                        <label class="sr-only" for="subCategoryInput">Add new sub-category</label>
+                        <input id="subCategoryInput" type="text" data-ng-model="subCat" placeholder="Add new sub-category" class="form-control" ng-keypress="addSubCategory(subCat, $event)">
+                    </div> -->
+                    <div class="form-group row">
+                        <input type="submit" value="Update" style="margin-top: 20px;" class="btn btn-default"  style="" data-ng-click="update()">
+                    </div>
+                    <div data-ng-show="error" class="text-danger col-sm-12">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

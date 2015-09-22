@@ -2,13 +2,13 @@
 
 module.exports = {
   app: {
-    title: 'Preethi Stores',
-    description: 'Full-Stack JavaScript with MongoDB, Express, AngularJS, and Node.js',
-    keywords: 'MongoDB, Express, AngularJS, Node.js',
+    title: 'meancommerce',
+    description: 'MEAN stack based e-commerce platform',
+    keywords: 'MEAN stack E-commerce opensource',
   },
   client: {
-    email: 'sachin@sifium.co',
-    phone: '9971530964',
+    email: '',
+    phone: '',
     successCheckoutMessage: 'Checkout successful'
   },
   mailer: {
@@ -16,16 +16,16 @@ module.exports = {
   	options: {
   		service: 'Gmail',
   		auth: {
-  			user: 'sachin@sifium.co',
-  			pass: 'sachin@sifium'
+  			user: '',
+  			pass: ''
   		}
   	}
   },
   sms: {
     send: 'mean-commerce-dev',
     auth: {
-      uname: 'demoway',
-      pass: 'mint2014'
+      uname: '',
+      pass: ''
     }
   },
   port: process.env.PORT || 3000,

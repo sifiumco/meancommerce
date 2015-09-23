@@ -26,7 +26,7 @@ strong {
       </div>
       <div class="row" style="padding:20px;">
         <p class="right" style="font-style:Italic; line-height:1rem;">{{order.created.substring(0,10)}}<strong> ({{order.created.substring(11, 16)}})</strong></p>
-        <p>Congratulations on your Preeti Store order from <span style="color:blue">
+        <p>Congratulations on your Store order from <span style="color:blue">
             <span ng-repeat="cartItem in order.cart">{{cartItem.product.name}} | </span>
         </span>.
           <br>Your order id is: {{order._id}}

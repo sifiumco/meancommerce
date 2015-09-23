@@ -70,11 +70,12 @@
     }
 
     .hover_color li a {
-        color: #696765;
+
+         color: #fff;
     }
 
     .hover_color li a:hover {
-        color: #000;
+       color: #cfcf;
     }
     </style>
     <div id="preloader">
@@ -85,7 +86,7 @@
         {% block content %}{% endblock %}
     </main>
     <!--Footer starts-->
-    <footer class="orange lighten-3 hide-on-large-only">
+    <footer class="hide-on-large-only" style="background-color:#fff;">
         <ul>
             <li style="display:inline;"><a class="waves-effect waves-teal btn-flat" href="/#!/about-us">
                             About us
@@ -102,12 +103,12 @@
         </ul>
         <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
             <div class="col l6 offset-l2 s12">
-                <p style="color:#fff; text-align:center;">© Copyright 2015 Preethi Stores. All rights reserved.</p>
+                 <p style="color:#fff; text-align:center;">© Powered by : <a href="http://www.sifium.co">Sifium.co</a></p>
             </div>
         </div>
     </footer>
     <!--Destop footer-->
-    <footer class="orange lighten-3 hide-on-med-and-down">
+    <footer class="hide-on-med-and-down" style="background-color:#fff;">
         <div class="container-fluid">
             <div class="row" style="padding:50px;">
                 <div class="col l2 s12" <a href="/" class="brand-logo"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="margin:6px; margin-top: 25%; width:auto;" /></a>
@@ -119,7 +120,7 @@
                 <div class="col l2 s12">
                     <ul class="hover_color">
                         <li>
-                            <strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Overview</a></strong>
+                            <strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Overview</a></strong>
                         </li>
                         <br>
                         <li>
@@ -142,7 +143,7 @@
                 </div>
                 <div class="col l2 s12">
                     <ul class="hover_color">
-                        <li><strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;"> Policies</a></strong></li>
+                        <li><strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;"> Policies</a></strong></li>
                         <br>
                         <li><a href="/#!/policy">Return Policy</a></li>
                         <li>Cancellation Policy</li>
@@ -152,7 +153,7 @@
                 </div>
                 <div class="col l2 s12">
                     <ul class="hover_color">
-                        <li><strong><a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Help</a></strong></li>
+                        <li><strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Help</a></strong></li>
                         <br>
                         <li>FAQs</li>
                         <li>How to Buy</li>
@@ -170,11 +171,11 @@
                         <li>
                             <strong> Customer Care Number:</strong>
                             <br>
-                            <h5>(+91)900-900-9009</h5>
+                            <h5>(+1)123-456-7899</h5>
                         </li>
                         <li data-ng-show="!authentication.user || authentication.user.roles.indexOf('admin') === -1">
                             <!-- Modal Trigger -->
-                            <a style="background: rgb(255, 183, 75) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;" class="modal-trigger9 waves-effect activehover1" href="#modal9">Track Order</a>
+                            <a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;" class="modal-trigger9 waves-effect activehover1" href="#modal9">Track Order</a>
                             <!-- Modal Structure -->
                             <div id="modal9" class="modal">
                                 <div class="modal-content">
@@ -188,49 +189,18 @@
                     </ul>
                 </div>
             </div>
-            <!--  <div class="row">
-                <h5 style="text-align:center;"> Customer Care Number: <strong><span style="color:red;">9009009009</span></strong></h5>
-            </div> -->
         </div>
         <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
             <div class="col l6 offset-l2 s6">
-                <p style="color:#fff; text-align:center;">© Copyright 2015 Preethi Stores. All rights reserved.</p>
+                <p style="color:#fff; text-align:center;">Powered by : <a href="http://www.sifium.co">Sifium.co</a></p>
             </div>
             <div class="col l4 s6">
                 <a href="#" class="footer-socialicon" target="_blank">
-                    <img style="" src="/static/images/icons/fb.png" alt="Preethi Facebook page" class="footer_fbImg"></a>
+                    <img style="" src="/static/images/icons/fb.png" alt="Facebook page" class="footer_fbImg"></a>
                 <a class="footer-socialicon" href="#" target="_blank">
-                    <img src="/static/images/icons/twitter.png" alt="Preethi Twitter page"></a>
+                    <img src="/static/images/icons/twitter.png" alt="Twitter page"></a>
             </div>
         </div>
-        <!--  <div class="container">
-            <div class="row footer-padding">
-                <div class="col l12 s12">
-                    <a href="#">
-                        <img src="/static/images/logo/logo.png" class="imas left responsive-img image-center" style=" margin: 6px; width: auto; height: 50px;">
-                    </a>
-                    <ul class="activehover right">
-                        <li class="footer-inline "><a href="#!">FAQ</a></li>
-                        <li class="footer-inline"><a href="#!">About Us</a></li>
-                        <li class="footer-inline"><a href="#!">Contact Us</a></li>
-                        <li class="footer-inline"><a href="#!">Sell with us</a></li>
-                        <li class="footer-inline"><a href="#!">Terms &amp; Conditions</a></li>
-                        <li class="footer-inline"><a href="#!">Careers</a></li> -->
-        <!-- <li style="display:inline; padding:20px; background-color: #363636; border-radius: 5px; padding: 5px 20px; margin: 2px 15px 2px 0px; cursor: pointer; " class="/"><a href="#!">Blog</a></li> -->
-        <!--  </ul>
-                </div> -->
-        <!--       <div class="col l3 s3 right" >
-                    <h6 class="">Like the experience? Get the app and go mobile!</h6>
-                    <a href="/" target="_blank" data-ng-click="onPlayStoreButtonClick()">
-                        <img alt="peppertap android app" style="width:50px;" src="images/google-play-badge@2x.png">
-                    </a>
-                    <a href="/" target="_blank" data-ng-click="onAppsStoreButtonClick()">
-                        <img src="images/apple-store-badge@2x.png" alt="peppertap iphone ios app" style="width:50px;">
-                    </a>
-                </div> -->
-        <!-- </div>
-            </div>
-            -->
     </footer>
 </body>
 <!--Embedding The User Object-->
@@ -273,7 +243,7 @@ function initialize() {
     var marker = new google.maps.Marker({
         position: myLatlng,
         map: map,
-        title: 'Preethi Stores '
+        title: 'Stores '
     });
 }
 

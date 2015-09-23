@@ -3,7 +3,7 @@
 module.exports = {
 	db: 'mongodb://admin:admin@ds047632.mongolab.com:47632/mean_ecommerce_dev',
 	app: {
-		title: 'Preethi Stores '
+		title: 'MeanCommerce'
 	},
 	assets: {
     lib: {

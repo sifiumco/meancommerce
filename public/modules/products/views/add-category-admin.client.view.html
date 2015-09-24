@@ -32,7 +32,7 @@
 }
 
 #links li a:hover {
-    background: #FFA500;
+    background: #2BA3CB;
     color: white;
 }
 
@@ -42,7 +42,7 @@
 }
 
 .background-heading {
-    background: teal;
+    background: #2BA3CB;
     color: white;
     padding: 10px;
 }
@@ -66,16 +66,16 @@
 .activeCategory,
 .activeCategory a div span {
     color: #fff;
-    background-color: #FFA500;
+    background-color: #2BA3CB;
 }
 </style>
 <section data-ng-controller="ProductsAdminController" data-ng-init="findCategoriesForAdding()">
     <div class="container" >
         <div class="card-panel">
-            <div class="card panel teal">
-                <h4 class="white-text text-center"> New Category and Sub Category</h4>
+           <div style="background:#2BA3CB; padding:5px; box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16), 0px 2px 10px 0px rgba(0, 0, 0, 0.12); margin-bottm:10px;">
+                <h5 class="white-text text-center"> New Category and Sub Category</h5>
             </div>
-            <div class="row" data-ng-model="product" style="margin-left:0px; margin-right:0px;"s>
+            <div class="row" data-ng-model="product" style="margin-left:0px; margin-right:0px; margin-top:10px;">
                 <div class="col l12 m12 s12 ">
                     <div ngf-select type="file" ngf-change="uploadImage($files)" accept="image/*" ngf-max-size='1000000'>
                         <img src="{{Constants.addImage}}" class="responsive-img image-center addImage-size" ngf-max-size='1000000'>

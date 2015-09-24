@@ -90,10 +90,10 @@ label {
 }
 label:hover {
   font-size: 1.2rem;
-  color:#ee6e73;
+  color:#0C86AE;
 }
 .activeSubCategory {
-  color: #FF9800;
+  color: #0C86AE;
   font-weight: 800;
 }
 
@@ -107,8 +107,8 @@ label:hover {
   padding: 10px;
   border-radius: 10px;
   position: fixed;
-  background: #262626;
-  color: #ccc;
+  background: #2BA3CB;
+    color: #fff;
   margin-top: 20px;
   z-index: 9999;
 }
@@ -162,18 +162,18 @@ label:hover {
 }
 
 .right_border{
-    border-right: 2px solid #f3db6f;
+    border-right: 2px solid #0C86AE;
     -webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
     animation: mymove 5s infinite;
 }
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {
-    50% {border-right: 2px solid #ffb748;}
+    50% {border-right: 2px solid #0C86AE;}
 }
 
 /* Standard syntax */
 @keyframes mymove {
-    50% {border-right: 1px solid #ffb748;}
+    50% {border-right: 1px solid #0C86AE;}
 }
 
 /*Custom Form*/
@@ -337,7 +337,7 @@ label:hover {
 
 .produktliste .card-content h3 a {
     text-transform: none;
-    color: #212121
+    color: #212121;
 }
 
 .produktliste .card-title {
@@ -504,10 +504,10 @@ label:hover {
       </select>
     </div>
     </div>
-    <div data-ng-hide="productsLoaded">
+    <div data-ng-hide="productsLoaded"  style="min-height:400px;">
       <img ng-src="{{Constants.preloader}}" style="width:32px; height:32px; position:absolute; top:50%; left:55%;">
     </div>
-    <div  data-ng-show="productsLoaded">
+    <div  data-ng-show="productsLoaded" style="min-height:400px;">
       <!-- <div class="row header-produktliste">
         <div class="col m6 modelsearch">&nbsp; -->
       <!-- <form class="row" method="get" role="search"> -->
@@ -557,7 +557,7 @@ label:hover {
              </div>
              <div class="col s8">
                  <form data-ng-submit="addToCart(product, items)" style="color: black;">
-                  <input style="text-align:center; height:30px; color:#FFA726; font-size:1.2rem;" type="text" min="1" data-ng-model="items">
+                  <input style="text-align:center; height:30px; color:#4e4e4e; font-size:1.2rem;" type="text" min="1" data-ng-model="items">
                 </form>
              </div>
              <div class="col s2">
@@ -570,7 +570,7 @@ label:hover {
 
               </div>
             <div class="card-title" style="">
-              <div class="price"><a href data-ng-click="addToCart(product, items)" class="right btn waves-effect waves-light orange lighten-1" style="width:100%"><i class="material-icons" style="font-size:2rem;">add_shopping_cart</i></a></div>
+              <div class="price"><a href data-ng-click="addToCart(product, items)" class="right btn waves-effect waves-light" style="width:100%; background:#56B6D5;"><i class="material-icons" style="font-size:2rem; color:#fff;">add_shopping_cart</i></a></div>
             </div>
           </div>
         </li>

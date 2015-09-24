@@ -51,7 +51,7 @@
     }
 
     #preloader {
-        background-color: #4e4e4e;
+        background-color: #fff;
         position: fixed;
         left: 50;
         top: 50;
@@ -70,24 +70,27 @@
     }
 
     .hover_color li a {
-
-         color: #fff;
+        color: #4e4e4e;
     }
 
     .hover_color li a:hover {
-       color: #cfcf;
+        color: #cfcf;
+    }
+    .footer {
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16), 0px 2px 10px 0px rgba(0, 0, 0, 0.12);
+
     }
     </style>
     <div id="preloader">
         <div class="loader1"></div>
     </div>
     <header id="header" style="height:50px;" data-ng-include="'/modules/core/views/header.client.view.html'"></header>
-    <main>
+    <div class="container-fluid">
         {% block content %}{% endblock %}
-    </main>
+    </div>
     <!--Footer starts-->
-    <footer class="hide-on-large-only" style="background-color:#fff;">
-        <ul>
+    <footer class="hide-on-large-only footermobile">
+        <ul style="text-align:center">
             <li style="display:inline;"><a class="waves-effect waves-teal btn-flat" href="/#!/about-us">
                             About us
                             </a></li>&nbsp;&nbsp;&nbsp;
@@ -103,28 +106,25 @@
         </ul>
         <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
             <div class="col l6 offset-l2 s12">
-                 <p style="color:#fff; text-align:center;">© Powered by : <a href="http://www.sifium.co">Sifium.co</a></p>
+                <p style="color:#fff; text-align:center;">© Powered by : <a href="http://www.sifium.co">Sifium.co</a></p>
             </div>
         </div>
     </footer>
     <!--Destop footer-->
-    <footer class="hide-on-med-and-down" style="background-color:#fff;">
+    <footer class="hide-on-med-and-down " style="background-color:#fff;">
         <div class="container-fluid">
-            <div class="row" style="padding:50px;">
-                <div class="col l2 s12" <a href="/" class="brand-logo"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="margin:6px; margin-top: 25%; width:auto;" /></a>
+            <div class="row" style="padding:20px;">
+                <div class="col l1 s1">&nbsp;</div>
+                <div class="col l2 s12" <a href="/" class="brand-logo"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="margin:6px; margin-top: 8%; width:200px;" /></a>
                 </div>
-                <!--  <div class="col l2 s12" style="padding-top:20px; text-align:center;">
-                    <a href="/"><img src="../static/images/scooter.png" class="responsive-img" />
-                        <br> <span style="font-style:Italic;">Express Delivery</span></a>
-                </div> -->
                 <div class="col l2 s12">
                     <ul class="hover_color">
                         <li>
-                            <strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Overview</a></strong>
+                            <strong><span style="background: rgb(43, 163, 203) none repeat scroll 0% 0%; padding: 10px; color:white; border-radius: 20%;">Overview</span></strong>
                         </li>
                         <br>
                         <li>
-                            <a href="/#!/about-us">
+                            <a class="links" href="/#!/about-us">
                             About us
                             </a>
                         </li>
@@ -135,7 +135,7 @@
                             Latest Products
                         </li>
                         <li>
-                            <a href="/#!/contact-us">
+                            <a class="links" href="/#!/contact-us">
                             Contact us
                             </a>
                         </li>
@@ -143,9 +143,9 @@
                 </div>
                 <div class="col l2 s12">
                     <ul class="hover_color">
-                        <li><strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;"> Policies</a></strong></li>
+                        <li><strong><span style="background: rgb(43, 163, 203) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%; color:white;"> Policies</span></strong></li>
                         <br>
-                        <li><a href="/#!/policy">Return Policy</a></li>
+                        <li><a class="links" href="/#!/policy">Return Policy</a></li>
                         <li>Cancellation Policy</li>
                         <li>Refund Policy</li>
                         <li>Terms of Use</li>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="col l2 s12">
                     <ul class="hover_color">
-                        <li><strong><a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;">Help</a></strong></li>
+                        <li><strong><span class="links" style="background: rgb(43, 163, 203) none repeat scroll 0% 0%; padding: 10px; color:white; border-radius: 20%;">Help</span></strong></li>
                         <br>
                         <li>FAQs</li>
                         <li>How to Buy</li>
@@ -161,13 +161,13 @@
                         <li>Contact Us</li>
                     </ul>
                 </div>
-                <div class="col l2 s12" style="padding-top:20px; text-align:center;">
+                <!-- <div class="col l2 s12" style="padding-top:20px; text-align:center;">
                     <a href="/"><img src="../static/images/scooter.png" class="responsive-img" />
                         <br> <span style="font-style:Italic;">Express Delivery</span></a>
                     <br>
-                </div>
+                </div> -->
                 <div class="col l2 s12">
-                    <ul class="hover_color" style="padding-top:20%;">
+                    <ul class="hover_color" style="padding-top:10%;">
                         <li>
                             <strong> Customer Care Number:</strong>
                             <br>
@@ -175,7 +175,7 @@
                         </li>
                         <li data-ng-show="!authentication.user || authentication.user.roles.indexOf('admin') === -1">
                             <!-- Modal Trigger -->
-                            <a style="background: rgb(12, 134, 174) none repeat scroll 0% 0%; padding: 10px; border-radius: 20%;" class="modal-trigger9 waves-effect activehover1" href="#modal9">Track Order</a>
+                            <a style="background: rgb(43, 163, 203) none repeat scroll 0% 0%; border-radius: 20%; color:white;" class="modal-trigger9 waves-effect activehover1 btn" href="#modal9">Track Order</a>
                             <!-- Modal Structure -->
                             <div id="modal9" class="modal">
                                 <div class="modal-content">
@@ -188,11 +188,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col l1 s1">&nbsp;</div>
             </div>
         </div>
         <div class="row footer-copyright" style="background: transparent linear-gradient(to bottom, #4B4B4B 0px, #414141 50%, #373737 100%) repeat scroll 0% 0%;">
             <div class="col l6 offset-l2 s6">
-                <p style="color:#fff; text-align:center;">Powered by : <a href="http://www.sifium.co">Sifium.co</a></p>
+                <p style="color:#fff; text-align:center;">Powered and Designed by : <a href="http://www.sifium.co">Sifium Info Tech Pvt ltd</a></p>
             </div>
             <div class="col l4 s6">
                 <a href="#" class="footer-socialicon" target="_blank">
@@ -205,7 +206,11 @@
 </body>
 <!--Embedding The User Object-->
 <script type="text/javascript">
-var user = {{ user | json | safe }};
+var user = {
+    {
+        user | json | safe
+    }
+};
 </script>
 {% if process.env.NODE_ENV === 'development' %}
 <!--Application JavaScript Files-->

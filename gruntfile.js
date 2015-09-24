@@ -18,34 +18,34 @@ module.exports = function(grunt) {
 			serverViews: {
 				files: watchFiles.serverViews,
 				options: {
-					livereload: false
+					livereload: true
 				}
 			},
 			serverJS: {
 				files: watchFiles.serverJS,
 				tasks: ['jshint'],
 				options: {
-					livereload: false
+					livereload: true
 				}
 			},
 			clientViews: {
 				files: watchFiles.clientViews,
 				options: {
-					livereload: false,
+					livereload: true,
 				}
 			},
 			clientJS: {
 				files: watchFiles.clientJS,
 				tasks: ['jshint'],
 				options: {
-					livereload: false
+					livereload: true
 				}
 			},
 			clientCSS: {
 				files: watchFiles.clientCSS,
 				tasks: ['csslint'],
 				options: {
-					livereload: false
+					livereload: true
 				}
 			}
 		},

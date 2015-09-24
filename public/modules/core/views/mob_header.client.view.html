@@ -117,11 +117,6 @@ nav {
     font-size: 1.3em;
 }
 
-.material-icons {
-    font-weight: 400;
-    color: #fff;
-}
-
 .cost {
     font-size: 1em;
 }
@@ -387,7 +382,7 @@ textarea.materialize-textarea:focus {
 <div data-ng-controller="HeaderController">
     <header class="">
         <nav style="height:51px;">
-            <a href="/" class="brand-logo left" style=" margin-left: -32%;"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px;"></a>
+            <a href="/" class="brand-logo left" style="margin-left: 0%;margin-top: 2px;"><img src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px;"></a>
             <!--  <a data-ng-show="authentication.user && authentication.user.roles.indexOf('admin') === -1" class="left responsive-img image-center" style="margin:6px; width:auto; height:50px;" href="#!/orders">Orders</a> -->
             <div class="container-fluid">
                 <ul id='dropdown2' class='dropdown-content right' style="width: 120px;">
@@ -421,7 +416,7 @@ textarea.materialize-textarea:focus {
             <!-- Modal Trigger -->
             <a id="cart-icon" class="waves-effect modal-trigger2 right" style="height:51px; width:51px;" href="#modal3" ng-click="openCart()">
                 <div style="margin-top:10px;"><i class="material-icons">add_shopping_cart</i>
-                    <div style="background:#F68D38; border-radius: 50%; padding:10px; text-align:center; position: absolute; z-index:999; top:0; font-size: 0.8rem; margin-left:20px; color:white; margin-top: 5px;"><span data-ng-bind="cartItems"></span></div>&nbsp;&nbsp;</div>
+                    <div style="background:#2BA3CB; border-radius: 50%; padding:10px; text-align:center; position: absolute; z-index:999; top:0; font-size: 0.8rem; margin-left:20px; color:white; margin-top: 5px;"><span data-ng-bind="cartItems"></span></div>&nbsp;&nbsp;</div>
             </a>
             <!-- Modal Structure -->
             <div id="modal3" class="modal black-text">
@@ -483,30 +478,20 @@ textarea.materialize-textarea:focus {
                         <a href data-ng-click="checkout();" class="modal-action modal-close waves-effect waves-green btn">Place Order <span data-ng-bind="cartPrice"></span></a>
                     </div>
                 </div>
-                <!--       <a class='right waves-effect' id="search" data-ng-click="displayLoginBox()" style="height: 51px; width: 41px;" href='#'><i style="padding-top:10px; text-align:center;" class="material-icons">search</i></a>
-        </nav>
-        <div data-ng-hide="hideSearch" class="row" id="search1" style="width:220px; height:51px; position:absolute; right:0px;">
-            <div class="right">
-                <form data-ng-submit="search(searchTerm)" class="search-wrapper cf">
-                    <input type="text" placeholder="Search here..." data-ng-model="searchTerm" required="">
-                    <button class="waves-effect" type="submit">Search</button>
-                </form>
-            </div>
-        </div> -->
             </div>
             <!--Track Order-->
             <div id="modal6" class="modal">
                 <div class="modal-content">
                     <form style="color:black; height:100px;" onsubmit="trackOrder()">
                         <input id="orderId" type="text" style="height:3.3rem;" placeholder="Track order by order ID">
-                        <button class="btn right" type="submit"  style="margin-top:5px; width:100%;">Track order</button>
+                        <button class="btn right" type="submit"  style="margin-top:5px; width:100%; background:#2BA3CB;">Track order</button>
                     </form>
                 </div>
             </div>
             <!--login modal-->
             <div id="modal2" class="row modal black-text" style="border-radius: 10px;">
                 <div data-ng-controller="AuthenticationController">
-                    <h4 class="col l12 m12 s12 card teal lighten-1 white-text create-account-heading text-center" style="padding:5px;"> <img href="/" src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px; margin-left: 20%; margin-left:auto; margin-right:auto; display:block;"></h4>
+                    <h4 class="col l12 m12 s12 card white-text create-account-heading text-center" style="padding:5px; background:#fff;"> <img href="/" src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px; margin-left: 20%; margin-left:auto; margin-right:auto; display:block;"></h4>
                     <!-- <h4 class="col l12 m12 s12 card grey darken-3 white-text create-account-heading text-center">Login</h4> -->
                     <form data-ng-submit="signin()" autocomplete="off">
                         <div class=" no-top-bottom" style="padding:20px;">
@@ -521,14 +506,14 @@ textarea.materialize-textarea:focus {
                                 </div>
                             </div>
                             <p>
-                                <button href="#" type="submit" class="waves-effect waves-teal blue btn btn-flat modal-action white-text teal lighten-1">Login</button> &nbsp;
+                                <button href="#" type="submit" class="waves-effect waves-teal blue btn btn-flat modal-action white-text" style="background:#2BA3CB;">Login</button> &nbsp;
                                 <br>
                                 <div data-ng-show="error" class="text-center row" style="color:#ee6e73;">
                                     <strong data-ng-bind="error"></strong>
                                 </div>
                                 <br>
                                 <!-- <button href="#" class="btn btn-flat white modal-close">Cancel</button> -->
-                                <a href class="blue-text forgot-password" style="text-align:center" data-ng-click="showForgotPasswordDialog()">Forgot your password?</a>
+                                <a class="blue-text forgot-password right" style="text-align:center; font-size:0.8em;" data-ng-click="showForgotPasswordDialog()">Forgot your password?</a>
                             </p>
                             <!--   <div class="row col l6 s6 offset-s3 text-center form-group">
                                         <button class="btn waves-effect waves-light" type="submit">Sign in</button></div> -->
@@ -540,14 +525,14 @@ textarea.materialize-textarea:focus {
                 </div>
                 <div class="row" data-ng-controller="PasswordController" data-ng-show="forgotPassword">
                     <!-- <h4 class="card teal col l12 m12 s12 white-text text-center create-account-heading" style="padding:10px;">Restore your password</h4> -->
-                    <div class="col l12 m12 s6">
+                    <div class="col l12 m12 s12">
                         <form data-ng-submit="askForPasswordReset()" class="signin form-horizontal" autocomplete="off">
                             <div class="form-group">
                                 <!--  <input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Username"> -->
                                 <input type="email" id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="Email">
                             </div>
                             <div class="text-center form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" style="background:#2BA3CB;">Submit</button>
                             </div>
                             <div data-ng-show="error" class="text-center text-danger">
                                 <strong>{{error}}</strong>
@@ -561,7 +546,7 @@ textarea.materialize-textarea:focus {
             </div>
             <!-- Register User Modal Structure -->
             <div id="modal1" class="modal black-text" data-ng-controller="AuthenticationController" style="border-radius: 10px; width:85%;">
-                <h4 class="col l12 m12 s12 card teal lighten-1 white-text create-account-heading text-center" style="padding:5px;"> <img href="/" src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px; margin-left: 20%; margin-left:auto; margin-right:auto; display:block;"></h4>
+                <h4 class="col l12 m12 s12 card white-text create-account-heading text-center" style="padding:5px; background:#fff;"> <img href="/" src="/static/images/logo/logo1.png" class="left responsive-img image-center" style="width:auto; height:46px; margin-left: 20%; margin-left:auto; margin-right:auto; display:block;"></h4>
                 <form name="userForm" data-ng-submit="signup()" novalidate autocomplete="off">
                     <div>
                         <div class="row">
@@ -616,7 +601,7 @@ textarea.materialize-textarea:focus {
                             </div>
                         </div>
                         <div class="row text-center form-group">
-                            <button class="waves-effect waves-teal btn teal lighten-1" type="submit"><i class="material-icons left"></i>Sign up</button>
+                            <button class="waves-effect waves-teal btn" style="background:#2BA3CB;" type="submit"><i class="material-icons left"></i>Sign up</button>
                         </div>
                         <div data-ng-show="error" class="row text-center">
                             <strong data-ng-bind="error" style="color:#ee6e73;"></strong>
